@@ -1,42 +1,38 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.List;
+import java.util.TreeMap;
+import java.util.Set;
 
 public class AnalyticsCounter {
-	private static int headacheCount = 0;	// initialize to 0
-	private static int rashCount = 0;		// initialize to 0
-	private static int pupilCount = 0;		// initialize to 0
-	
+
 	public static void main(String args[]) throws Exception {
-		// first get input
-		BufferedReader reader = new BufferedReader (new FileReader("Project02Eclipse/symptoms.txt"));
-		String line = reader.readLine();
 
-		while (line != null) {
-			if (line.equals("headache")) {
-				headacheCount++;
-				
-			}
-			else if (line.equals("rash")) {
-				rashCount++;
-			}
-			else if (line.contains("pupils")) {
-				pupilCount++;
-			}
+		// Set results into a String List
+		ReadSymptomDataFromFile readSymptomsList = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		List<String> symptomsList = readSymptomsList.GetSymptoms();
 
-			line = reader.readLine();	// get another symptom
+		// Initiate a Tree Map to collect the Results
+		TreeMap<String, Integer> mapResults = new TreeMap<String, Integer>();
+
+		// For each Symptom: either add it to the Map or increment the number if already
+		// exists
+		for (String symptom : symptomsList) {
+			if (mapResults.containsKey(symptom)) {
+				mapResults.put(symptom, mapResults.get(symptom) + 1);
+			} else {
+				mapResults.put(symptom, 1);
+			}
 		}
-		
-		// close input file
-		reader.close();
-		
-		// next generate output
-		FileWriter writer = new FileWriter ("result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
+
+		// Report the results into a "results.out" file
+		FileWriter writer = new FileWriter("result.out");
+		Set<String> keys = mapResults.keySet();
+		for (String key : keys) {
+			writer.write(key + "= " + mapResults.get(key) + "\n");
+		}
 		writer.close();
+
 	}
 }
