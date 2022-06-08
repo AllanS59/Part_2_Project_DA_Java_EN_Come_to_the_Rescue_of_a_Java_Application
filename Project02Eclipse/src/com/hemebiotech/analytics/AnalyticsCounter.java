@@ -1,25 +1,23 @@
 package com.hemebiotech.analytics;
 
-import java.io.FileWriter;
 import java.util.List;
-import java.util.TreeMap;
-import java.util.Set;
+import java.util.Map;
 
 public class AnalyticsCounter {
 
 	public static void main(String args[]) throws Exception {
 
 		// Set results into a String List
-		ReadSymptomDataFromFile readSymptomsList = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
-		List<String> symptomsList = readSymptomsList.GetSymptoms();
+		ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		List<String> symptomsList = readSymptomDataFromFile.GetSymptoms();
 
-		
-		// Create a class MapResults and complete the map with results
-		MapResults reportSymptoms = new MapResults();
-		reportSymptoms.completeMap ( symptomsList);
-		
-		//Report the results Map into a "results.out" file
-		reportSymptoms.reportResultsInFile();
+		// Count each symptoms and store the results in a Map
+		CountSymptomsInMap countSymptomsInMap = new CountSymptomsInMap(symptomsList);
+		Map<String, Integer> mapSymptomsResults = countSymptomsInMap.CountSymptoms();
+
+		// Report the result in an output file
+		WriteMapResultsInFile writeResultsInFile = new WriteMapResultsInFile(mapSymptomsResults, "results.out");
+		writeResultsInFile.reportResults();
 
 	}
 }
