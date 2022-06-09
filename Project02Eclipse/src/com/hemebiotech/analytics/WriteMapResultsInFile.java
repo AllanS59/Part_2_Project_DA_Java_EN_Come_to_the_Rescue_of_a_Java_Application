@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class WriteMapResultsInFile implements IWriteResultsInFile {
+public class WriteMapResultsInFile implements IResultsWriter {
 
 	private Map<String, Integer> mapSymptomsResults = new TreeMap<String, Integer>();
 	private String filepath;
@@ -39,5 +39,4 @@ public class WriteMapResultsInFile implements IWriteResultsInFile {
 		}
 
 	}
-
 }

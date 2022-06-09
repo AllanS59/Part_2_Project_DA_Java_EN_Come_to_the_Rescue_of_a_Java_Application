@@ -1,29 +1,20 @@
 package com.hemebiotech.analytics;
 
-import java.util.List;
+import java.util.Map;
 
 /**
- * Anything that will report results from a Map into a outfile file
- * The name of the file shoud be define with a suitable extension (for example "*.out")
+ * Anything that will read a list of symptoms to count each symptoms and return
+ * the results
  * 
  */
-public interface IMapResults {
+
+public interface ISymptomsCounter {
 	/**
-	 * Read a List of string 'symptomList' and will store in the map 'mapResults' of the class the number of occurrence for each different string
-	 *  
-	 * The keys are the strings and the values are the numbers of occurrences
+	 * Read a List of string 'symptomList' and return the results in a Map.
 	 * 
-	 */	
-	void completeMap(List<String> symptomsList);
-	
-	
-	
-	/**
-	 * Create a file named with 'fileName' variable and write inside the results of the report.
-	 *  
-	 * It will do nothing if 'fileName' is empty
+	 * @return a Map containing the different Symptoms as keys and the number of
+	 *         occurrences as values
 	 * 
-	 */	
-	void reportResultsInFile();
-	
+	 */
+	Map<String, Integer> CountSymptoms();
 }

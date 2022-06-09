@@ -18,6 +18,5 @@ public class AnalyticsCounter {
 		// Report the result in an output file
 		WriteMapResultsInFile writeResultsInFile = new WriteMapResultsInFile(mapSymptomsResults, "results.out");
 		writeResultsInFile.reportResults();
-
 	}
 }
