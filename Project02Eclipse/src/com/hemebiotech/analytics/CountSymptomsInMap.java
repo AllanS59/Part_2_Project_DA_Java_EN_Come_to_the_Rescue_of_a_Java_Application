@@ -2,22 +2,18 @@ package com.hemebiotech.analytics;
 
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Count of symptoms from a list of string to a Map
+ *
+ */
 public class CountSymptomsInMap implements ISymptomsCounter {
 
-	public List<String> symptomsList = new ArrayList<String>();
-
-	/**
-	 * 
-	 * @param symptomsList a list containing the symptoms
-	 */
-	public CountSymptomsInMap(List<String> symptomsList) {
-		this.symptomsList = symptomsList;
+	public CountSymptomsInMap() {
 	}
 
-	public Map<String, Integer> CountSymptoms() {
+	public Map<String, Integer> countSymptoms(List<String> symptomsList) {
 
 		Map<String, Integer> mapSymptomsResults = new TreeMap<String, Integer>();
 

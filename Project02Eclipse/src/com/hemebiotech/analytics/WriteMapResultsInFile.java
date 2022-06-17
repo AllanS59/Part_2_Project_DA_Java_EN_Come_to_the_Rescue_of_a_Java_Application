@@ -4,25 +4,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Set;
 import java.util.Map;
-import java.util.TreeMap;
 
+/**
+ * Report of the results from a Map into an external text file
+ *
+ */
 public class WriteMapResultsInFile implements IResultsWriter {
 
-	private Map<String, Integer> mapSymptomsResults = new TreeMap<String, Integer>();
 	private String filepath;
 
 	/**
-	 * @param mapSymptomsResults a map containing the different symptoms as keys and
-	 *                           the number of occurrences as values
-	 * @param filepath           a full or partial path to file to create/edit to
-	 *                           report the results
+	 * @param filepath a full or partial path to file to create/edit to report the
+	 *                 results
 	 */
-	public WriteMapResultsInFile(Map<String, Integer> mapSymptomsResults, String filepath) {
-		this.mapSymptomsResults = mapSymptomsResults;
+	public WriteMapResultsInFile(String filepath) {
 		this.filepath = filepath;
 	}
 
-	public void reportResults() {
+	public void reportResults(Map<String, Integer> mapSymptomsResults) {
 
 		if (filepath != null) {
 			try {

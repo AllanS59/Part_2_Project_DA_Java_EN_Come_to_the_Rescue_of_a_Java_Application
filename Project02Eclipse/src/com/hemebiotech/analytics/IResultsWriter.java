@@ -1,5 +1,7 @@
 package com.hemebiotech.analytics;
 
+import java.util.Map;
+
 /**
  * Anything that will report results into an output file. The name of the file
  * should be define with a suitable extension (for example "*.out")
@@ -9,11 +11,10 @@ package com.hemebiotech.analytics;
 public interface IResultsWriter {
 
 	/**
-	 * Create a file named with 'filepath' variable and write inside the results
-	 * from the map 'mapSymptomsResults'.
+	 * Report results from from a Map
 	 * 
-	 * It will do nothing if 'fileName' is empty
-	 * 
+	 * @param mapSymptomsResults a map containing the different symptoms as keys and
+	 *                           the number of occurrences as values
 	 */
-	void reportResults();
+	void reportResults(Map<String, Integer> mapSymptomsResults);
 }

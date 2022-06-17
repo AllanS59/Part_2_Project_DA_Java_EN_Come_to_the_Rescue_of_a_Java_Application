@@ -7,16 +7,21 @@ public class AnalyticsCounter {
 
 	public static void main(String args[]) throws Exception {
 
+		AnalyticsCounter analyticsCounter = new AnalyticsCounter();
+		analyticsCounter.process();
+	}
+
+	void process() {
 		// Set results into a String List
 		ReadSymptomDataFromFile readSymptomDataFromFile = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
 		List<String> symptomsList = readSymptomDataFromFile.GetSymptoms();
 
 		// Count each symptoms and store the results in a Map
-		CountSymptomsInMap countSymptomsInMap = new CountSymptomsInMap(symptomsList);
-		Map<String, Integer> mapSymptomsResults = countSymptomsInMap.CountSymptoms();
+		CountSymptomsInMap countSymptomsInMap = new CountSymptomsInMap();
+		Map<String, Integer> mapSymptomsResults = countSymptomsInMap.countSymptoms(symptomsList);
 
 		// Report the result in an output file
-		WriteMapResultsInFile writeResultsInFile = new WriteMapResultsInFile(mapSymptomsResults, "results.out");
-		writeResultsInFile.reportResults();
+		WriteMapResultsInFile writeResultsInFile = new WriteMapResultsInFile("results.out");
+		writeResultsInFile.reportResults(mapSymptomsResults);
 	}
 }
